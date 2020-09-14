@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-controller-deployment
+  labels:
+    app: gitops-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitops-controller
+  template:
+    metadata:
+      labels:
+        app: gitops-controller
+    spec:
+      containers:
+      - name: gitops-controller
+        image: runeanielsen/gitops-controller:latest
+      serviceAccountName: gitops-operator-deployment-acc
